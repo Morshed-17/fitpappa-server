@@ -1,7 +1,12 @@
 import express from "express";
-import router from "./app/router";
+
 import { globalErrorHandler } from "./app/middlewares/globalErrorHandler";
+import router from "./app/router";
 const app = express();
+
+app.use(express.json());
+
+
 
 app.get("/", (req, res) => {
   res.json({
@@ -10,6 +15,14 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api", router);
+// not found route
+
+app.use("*", (req, res) => {
+  res.json({
+    statusCode: 404,
+    message: "not found"
+  })
+});
 
 app.use(globalErrorHandler)
 

@@ -1,13 +1,14 @@
 import { Router } from "express";
 import catchAsync from "../../utils/catchAsync";
-import { AppError } from "../../errors/AppError";
-import { StatusCodes } from "http-status-codes";
+import { categoryControllers } from "./category.controller";
+
 
 
 const router = Router();
 
-router.get("/", catchAsync(async (req, res) => {
-    res.send("Hello World!");
-}))
+router.post("/", categoryControllers.createCategory)
+router.get("/", categoryControllers.getAllCategories)
+router.delete("/:id", categoryControllers.deleteCategory)
+router.patch("/:id", categoryControllers.updateCategory)
 
 export const categoryRouter = router

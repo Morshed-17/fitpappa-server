@@ -5,7 +5,7 @@ const router = Router();
 
 const routes = [
     {
-        path: "/category",
+        path: "/categories",
         router: categoryRouter
     }
 ]
