@@ -4,14 +4,14 @@ import { categoryRouter } from "../modules/category/category.route";
 const router = Router();
 
 const routes = [
-    {
-        path: "/categories",
-        router: categoryRouter
-    }
-]
+  {
+    path: "/categories",
+    router: categoryRouter,
+  },
+];
 
 routes.forEach((route) => {
-    router.use(route.path, route.router)
-})
+  router.use(route.path, route.router);
+});
 
-export default router
+export default router;

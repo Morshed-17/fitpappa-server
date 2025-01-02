@@ -6,24 +6,23 @@ const app = express();
 
 app.use(express.json());
 
-
-
 app.get("/", (req, res) => {
   res.json({
-    message: "how are you?"
-  })
+    message: "how are you?",
+  });
 });
 
 app.use("/api", router);
 // not found route
 
 app.use("*", (req, res) => {
-  res.json({
+  res.status(404).json({
+    success: false,
     statusCode: 404,
-    message: "not found"
-  })
+    message: "not found",
+  });
 });
 
-app.use(globalErrorHandler)
+app.use(globalErrorHandler);
 
 export default app;

@@ -1,19 +1,17 @@
-
 // create a mongoose schema and model for category module
-
 
 import { model, Schema } from "mongoose";
 import { TCategory } from "./category.interface";
 
 const categorySchema = new Schema<TCategory>({
-    name: {
-        type: String,
-        required: true
-    },
-    image: {
-        type: String,
-        required: true
-    }
-})
+  name: {
+    type: String,
+    required: true,
+  },
+  image: {
+    type: String,
+    required: true,
+  },
+});
 
-export const Category = model<TCategory>("Category", categorySchema)
+export const Category = model<TCategory>("Category", categorySchema);
