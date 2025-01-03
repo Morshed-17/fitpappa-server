@@ -13,6 +13,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api", router);
+
 // not found route
 
 app.use("*", (req, res) => {

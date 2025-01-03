@@ -1,5 +1,4 @@
 import { Router } from "express";
-import catchAsync from "../../utils/catchAsync";
 import { categoryControllers } from "./category.controller";
 
 const router = Router();
