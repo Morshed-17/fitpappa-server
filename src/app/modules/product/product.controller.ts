@@ -12,7 +12,7 @@ const createProduct = catchAsync(async (req: Request, res: Response) => {
 
 // get all categories
 const getAllProducts = catchAsync(async (req: Request, res: Response) => {
-  const { search, categories, sort, page, limit } = req.query;
+  const { search, categories, sort, page, limit, minPrice, maxPrice} = req.query;
 
   const categoryIds = categories
     ? (categories as string).split(",").map((id) => id)
@@ -21,12 +21,21 @@ const getAllProducts = catchAsync(async (req: Request, res: Response) => {
   const pageNumber = page ? parseInt(page as string, 10) : 1;
   const limitNumber = limit ? parseInt(limit as string, 10) : 10;
 
+  //* MIn and max price
+
+
+  const min = minPrice ? parseFloat(minPrice as string) : undefined;
+  const max = maxPrice ? parseFloat(maxPrice as string) : undefined;
+
+
   const result = await productServices.getAllProducts(
     search as string,
     categoryIds,
     sort as string,
     pageNumber,
-    limitNumber
+    limitNumber,
+    min,
+    max
   );
   sendResponse(res, 200, true, "Products fetched successfully", result);
 });

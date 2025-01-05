@@ -13,7 +13,9 @@ const getAllProducts = async (
   categoryIds?: string[],
   sort?: string,
   page: number = 1,
-  limit: number = 5
+  limit: number = 5,
+  minPrice?: number,
+  maxPrice?: number
 ) => {
   const filter: any = {};
 
@@ -29,6 +31,14 @@ const getAllProducts = async (
     filter.category = {
       $in: categoryIds.map((id) => new mongoose.Types.ObjectId(id)),
     };
+  }
+  //* Price filter min max
+
+  //* Add price filter
+  if (minPrice !== undefined || maxPrice !== undefined) {
+    filter.price = {};
+    if (minPrice !== undefined) filter.price.$gte = minPrice; // Minimum price
+    if (maxPrice !== undefined) filter.price.$lte = maxPrice; // Maximum price
   }
 
   //* sorting by price
