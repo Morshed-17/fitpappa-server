@@ -12,8 +12,10 @@ const createProduct = catchAsync(async (req: Request, res: Response) => {
 
 // get all categories
 const getAllProducts = catchAsync(async (req: Request, res: Response) => {
-  const { search, categories, sort, page, limit, minPrice, maxPrice} = req.query;
+  const { search, categories, sort, page, limit, minPrice, maxPrice } =
+    req.query;
 
+  //*categories
   const categoryIds = categories
     ? (categories as string).split(",").map((id) => id)
     : undefined;
@@ -23,10 +25,8 @@ const getAllProducts = catchAsync(async (req: Request, res: Response) => {
 
   //* MIn and max price
 
-
   const min = minPrice ? parseFloat(minPrice as string) : undefined;
   const max = maxPrice ? parseFloat(maxPrice as string) : undefined;
-
 
   const result = await productServices.getAllProducts(
     search as string,
