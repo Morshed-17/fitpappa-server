@@ -40,6 +40,12 @@ const getAllProducts = catchAsync(async (req: Request, res: Response) => {
   sendResponse(res, 200, true, "Products fetched successfully", result);
 });
 
+const getAProduct = catchAsync(async (req: Request, res: Response) => {
+  const result = await productServices.getAProduct(req.params.id);
+  console.log(req.params.id)
+  sendResponse(res, 200, true, "Product fetched successfully", result);
+});
+
 const deleteProduct = catchAsync(async (req: Request, res: Response) => {
   await productServices.deleteProduct(req.params.id);
   sendResponse(res, 200, true, "Product deleted successfully", null);
@@ -55,4 +61,5 @@ export const productControllers = {
   getAllProducts,
   deleteProduct,
   updateProduct,
+  getAProduct,
 };

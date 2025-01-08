@@ -69,6 +69,12 @@ const getAllProducts = async (
   };
 };
 
+const getAProduct = async (id: string) => {
+  const result = await Product.findById(id).populate('category');
+  console.log(result)
+  return result;
+};
+
 const deleteProduct = async (id: string) => {
   const result = await Product.findByIdAndDelete(id);
   return result;
@@ -84,4 +90,5 @@ export const productServices = {
   getAllProducts,
   deleteProduct,
   updateProduct,
+  getAProduct,
 };

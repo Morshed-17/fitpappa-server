@@ -33,4 +33,3 @@ app.use("*", (req, res) => {
 app.use(globalErrorHandler);
 
 export default app;
-2
