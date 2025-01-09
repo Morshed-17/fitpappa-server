@@ -71,7 +71,6 @@ const getAllProducts = async (
 
 const getAProduct = async (id: string) => {
   const result = await Product.findById(id).populate('category');
-  console.log(result)
   return result;
 };
 

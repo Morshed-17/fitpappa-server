@@ -42,7 +42,6 @@ const getAllProducts = catchAsync(async (req: Request, res: Response) => {
 
 const getAProduct = catchAsync(async (req: Request, res: Response) => {
   const result = await productServices.getAProduct(req.params.id);
-  console.log(req.params.id)
   sendResponse(res, 200, true, "Product fetched successfully", result);
 });
 
