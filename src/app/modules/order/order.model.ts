@@ -24,7 +24,7 @@ const orderSchema = new Schema<TOrder>({
   ],
   paymentMethod: {
     type: String,
-    enum: ["Cash on Delivery"],
+    enum: ["Cash on Delivery", "card"],
     required: true,
   },
   totalAmount: { type: Number, required: true, min: 0 },

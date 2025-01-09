@@ -11,6 +11,6 @@ export type TOrder = {
     productId: mongoose.Types.ObjectId;
     quantity: number;
   }[];
-  paymentMethod: "Cash on Delivery";
+  paymentMethod: "Cash on Delivery" | "card";
   totalAmount: number;
 };
