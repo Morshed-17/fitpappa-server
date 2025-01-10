@@ -5,15 +5,22 @@ import { Order } from "./order.model";
 
 const createOrder = async (payload: TOrder) => {
   // Start stock deduction process
+
+
+  if (payload.products.length === 0) {
+    throw new AppError(400, "Please add products before ordering!");
+  }
+
   for (const item of payload.products) {
     const product = await Product.findById(item.productId);
     if (!product) {
-      throw new AppError(404,`Product with ID ${item.productId} not found`);
+      throw new AppError(404, `Product with ID ${item.productId} not found`);
     }
 
     // Check if there is enough stock
     if (product.stock < item.quantity) {
-      throw new AppError(404,
+      throw new AppError(
+        404,
         `Insufficient stock for product "${product.name}". Available: ${product.stock}, Required: ${item.quantity}`
       );
     }
@@ -24,7 +31,7 @@ const createOrder = async (payload: TOrder) => {
   }
 
   // Create the order
-  const result = await Order.create(payload);
+  const result = (await Order.create(payload)).populate("products.productId");
   return result;
 };
 
